@@ -1,0 +1,93 @@
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{adjustbox}
+\usepackage{fontspec}
+\usepackage[left=.8in, top=1in, right=.8in, bottom=1in]{geometry}
+\usepackage{hyperref}
+\usepackage[none]{hyphenat}
+\usepackage{multirow}
+\usepackage[parfill]{parskip}
+\usepackage{tabularx}
+\usepackage{url}
+\usepackage{xhfill}
+
+\hypersetup{pdftitle={Resume}, pdfauthor={avamsi07@gmail.com}}
+\pagestyle{empty}
+\setmainfont{FiraSans}[UprightFont=*-Regular, BoldFont=*-Medium]
+\urlstyle{same}
+
+\newfontfamily\pvtsc{AlegreyaSans-Medium}
+\newfontfamily\pvtmono{FiraCode-Regular}
+
+\newcommand\pvttextsc[2]{\pvtsc\fontsize{#1}{0}{\textsc{#2}}}
+
+\newcommand\resumegithub[1]{\href{https://github.com/#1}{\url{github.com/#1}}}
+\newcommand\resumelinkedin[1]{
+    % Trailing % removes space (due to newline?).
+    \href{https://www.linkedin.com/in/#1/}{\url{linkedin.com/in/#1}}%
+}
+
+\NewDocumentCommand\resumeheader{mmmoo}{
+    % @{} removes column padding, X expands to fill remaining width.
+    \begin{tabularx}{\textwidth}{@{}X r@{}}
+        % \multirow{N} merges N cells vertically, & separates columns.
+        \multirow{3}{*}{\pvttextsc{24pt}{#1}} & \pvtmono\href{tel://#2}{#2}
+        % \\ starts a new line (row).
+        \\                                    & \pvtmono\href{mailto:#3}{#3}
+        \IfNoValueTF{#4}{}{\\                 & \pvtmono{#4}}
+        \IfNoValueTF{#4}{}{\\                 & \pvtmono{#5}}
+    \end{tabularx}
+}
+
+\newcommand\resumesection[1]{
+    \begin{adjustbox}{margin=0 4pt}  % margin=horizontal vertical.
+        \begin{tabularx}{\textwidth}{@{}X@{}}
+            \pvttextsc{18pt}{#1}~~~\xrfill[3pt]{.4pt}  % ~ is NBSP.
+        \end{tabularx}
+    \end{adjustbox}
+}
+
+\newcommand\pvtthreecols[3]{
+    \begin{adjustbox}{margin=0 4pt}
+        \begin{tabularx}{\textwidth}{@{}X c X@{}}
+            \textbf{#1}~~~\xrfill[3pt]{.2pt}~&
+                \textbf{#2}
+            &~\xrfill[3pt]{.2pt}~~~\textbf{#3}
+        \end{tabularx}
+    \end{adjustbox}
+}
+
+\newcommand\pvttwocols[2]{
+    \begin{adjustbox}{margin=0 4pt 0 2pt}  % margin=left bottom right top.
+        \begin{tabularx}{\textwidth}{@{}X r@{}}
+            \textbf{#1} & \textbf{#2}
+        \end{tabularx}
+    \end{adjustbox}
+}
+
+\NewDocumentCommand\resumestint{omm}{
+    \IfNoValueTF{#1}{\pvttwocols{#2}{#3}}{\pvtthreecols{#1}{#2}{#3}}
+}
+
+\newcommand\resumeteam[2]{\pvttwocols{#1}{#2}}
+
+\NewDocumentCommand\resumelist{moo}{
+    \begin{adjustbox}{margin=0 4pt 0 0}
+        \begin{tabularx}{\textwidth}{@{}l@{}X@{}}
+            {\large$\bullet$~~} & #1
+            \IfNoValueTF{#2}{}{\vspace{4pt}\\ {\large$\bullet$~~} & #2}
+            \IfNoValueTF{#3}{}{\vspace{4pt}\\ {\large$\bullet$~~} & #3}
+        \end{tabularx}
+    \end{adjustbox}
+}
+
+\NewDocumentCommand\resumetwocolslist{omooo}{
+    \begin{adjustbox}{margin=0 4pt 0 0}
+        \begin{tabularx}{\textwidth}{@{}p{\IfNoValueTF{#1}{1in}{#1}} X@{}}
+            {\large$\bullet$}~~#2
+            \IfNoValueTF{#3}{}{\vspace{4pt}\\ {\large$\bullet$}~~#3}
+            \IfNoValueTF{#4}{}{\vspace{4pt}\\ {\large$\bullet$}~~#4}
+            \IfNoValueTF{#5}{}{\vspace{4pt}\\ {\large$\bullet$}~~#5}
+        \end{tabularx}
+    \end{adjustbox}
+}

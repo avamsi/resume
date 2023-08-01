@@ -21,12 +21,13 @@
 
 \newcommand\resumegithub[1]{\href{https://github.com/#1}{\url{github.com/#1}}}
 \newcommand\resumelinkedin[1]{
-    % Trailing % removes space (due to newline?).
+    % \url renders characters like ~ (which is otherwise rendered as a NBSP).
+    % Trailing % removes undesirable extra space (presumably from the newline).
     \href{https://www.linkedin.com/in/#1/}{\url{linkedin.com/in/#1}}%
 }
 
-\NewDocumentCommand\resumeheader{mmmoo}{
-    % @{} removes column padding, X expands to fill remaining width.
+\NewDocumentCommand\resumeheader{mmmoo}{  % m = mandatory, o = optional.
+    % @{} removes column padding, X expands to fill all available width.
     \begin{tabularx}{\textwidth}{@{}X r@{}}
         % \multirow{N} merges N cells vertically, & separates columns.
         \multirow{3}{*}{\pvttextsc{24pt}{#1}} & \pvtmono\href{tel://#2}{#2}
@@ -40,7 +41,7 @@
 \newcommand\resumesection[1]{
     \begin{adjustbox}{margin=0 4pt}  % margin=horizontal vertical.
         \begin{tabularx}{\textwidth}{@{}X@{}}
-            \pvttextsc{18pt}{#1}~~~\xrfill[3pt]{.4pt}  % ~ is NBSP.
+            \pvttextsc{18pt}{#1}~~~\xrfill[3pt]{.4pt}
         \end{tabularx}
     \end{adjustbox}
 }

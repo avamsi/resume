@@ -70,12 +70,14 @@
 
 \newcommand\resumeteam[2]{\pvttwocols{#1}{#2}}
 
-\NewDocumentCommand\resumelist{moo}{
+\NewDocumentCommand\resumelist{moooo}{
     \begin{adjustbox}{margin=0 4pt 0 0}
         \begin{tabularx}{\textwidth}{@{}l@{}X@{}}
             {\large$\bullet$~~} & #1
             \IfNoValueTF{#2}{}{\vspace{4pt} \\ {\large$\bullet$~~} & #2}
             \IfNoValueTF{#3}{}{\vspace{4pt} \\ {\large$\bullet$~~} & #3}
+            \IfNoValueTF{#4}{}{\vspace{4pt} \\ {\large$\bullet$~~} & #4}
+            \IfNoValueTF{#5}{}{\vspace{4pt} \\ {\large$\bullet$~~} & #5}
         \end{tabularx}
     \end{adjustbox}
 }
